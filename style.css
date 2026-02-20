@@ -63,11 +63,11 @@ input:focus {
     border-radius: 12px;
     font-size: 15px;
     font-weight: bold;
-    .register-btn {
-    font-weight: 400;   /* normal/dünn */
-}
     cursor: pointer;
     transition: 0.3s ease;
+    .register-btn {
+    font-weight: 300;
+}
 }
 
 .login-btn {
