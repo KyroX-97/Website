@@ -71,6 +71,7 @@ input:focus {
 .login-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px #a100ff;
+}
 
 .register-btn {
     width: 100%;
@@ -90,10 +91,4 @@ input:focus {
     background: linear-gradient(90deg, #ff004c, #a100ff, #0066ff);
     color: white;
     border: none;
-}
-
-
-
-
-
 }
