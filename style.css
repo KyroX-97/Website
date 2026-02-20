@@ -61,7 +61,7 @@ input:focus {
 /* Gemeinsamer Button-Style */
 .login-btn,
 .register-btn {
-    width: 120px;
+    width: 180px;
     padding: 12px;
     margin: 12px auto 0 auto;
     display: block;
