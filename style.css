@@ -3,15 +3,15 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     background: linear-gradient(135deg, #0b0b0d, #111118);
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
 /* Container */
 .login-container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
 /* Logo */
