@@ -34,7 +34,7 @@
 <script>
 
 /* ===========================
-   REGISTER POPUP LOGIC
+   REGISTER POPUP
 =========================== */
 
 const overlay = document.getElementById("registerOverlay");
@@ -68,10 +68,7 @@ const PERMISSIONS = {
 };
 
 const ROLES = {
-    GOD: {
-        name: "god",
-        permissions: "ALL"
-    },
+    GOD: { name: "god", permissions: "ALL" },
     SUPERADMIN: {
         name: "superadmin",
         permissions: [
@@ -159,20 +156,27 @@ function buildUserSession(userData) {
         };
     }
 
+    showInfoScreen();
+}
+
+/* ===========================
+   EVENT INFO SCREEN
+=========================== */
+
 function showInfoScreen() {
 
     let EVENTS = JSON.parse(localStorage.getItem("mia_events")) || [
         {
             id: 1,
             title: "Techno Night",
-            date: "2026-02-22",
+            date: "2026-12-31",
             description: "Hard Techno & Neon Vibes",
             image: "https://picsum.photos/800/500?1"
         },
         {
             id: 2,
             title: "Latin Party",
-            date: "2026-02-25",
+            date: "2026-12-28",
             description: "Reggaeton & Latin Hits",
             image: "https://picsum.photos/800/500?2"
         }
@@ -180,13 +184,13 @@ function showInfoScreen() {
 
     const today = new Date().toISOString().split("T")[0];
 
-    // Alte Events entfernen
+    // Abgelaufene Events entfernen
     EVENTS = EVENTS.filter(event => event.date >= today);
 
     // Nach Datum sortieren
     EVENTS.sort((a,b) => new Date(a.date) - new Date(b.date));
 
-    // Maximal 6 Events
+    // Max 6 Events
     EVENTS = EVENTS.slice(0,6);
 
     localStorage.setItem("mia_events", JSON.stringify(EVENTS));
