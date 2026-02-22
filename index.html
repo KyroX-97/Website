@@ -156,13 +156,6 @@ function buildUserSession(userData) {
         };
     }
 
-    showInfoScreen();
-}
-
-/* ===========================
-   EVENT INFO SCREEN
-=========================== */
-
 function showInfoScreen() {
 
     let EVENTS = JSON.parse(localStorage.getItem("mia_events")) || [
@@ -184,18 +177,39 @@ function showInfoScreen() {
 
     const today = new Date().toISOString().split("T")[0];
 
-    // Abgelaufene Events entfernen
     EVENTS = EVENTS.filter(event => event.date >= today);
-
-    // Nach Datum sortieren
     EVENTS.sort((a,b) => new Date(a.date) - new Date(b.date));
-
-    // Max 6 Events
     EVENTS = EVENTS.slice(0,6);
 
     localStorage.setItem("mia_events", JSON.stringify(EVENTS));
 
     document.body.innerHTML = `
+        <div class="top-bar">
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+
+        <div class="side-menu" id="sideMenu">
+            <div class="menu-header">MIA System</div>
+            <div class="menu-item">Info</div>
+            <div class="menu-item">Barkeeper</div>
+            <div class="menu-item">Runner</div>
+            <div class="menu-item">Getränkekarte</div>
+            <div class="menu-item">Einstellungen</div>
+
+            ${
+                currentUser.permissions === "ALL" ||
+                currentUser.permissions.includes(PERMISSIONS.MANAGE_USERS)
+                ? `<div class="menu-item">Mitarbeiter</div>`
+                : ""
+            }
+
+            ${
+                currentUser.role === "god"
+                ? `<div class="menu-item god-mode">GOD Mode</div>`
+                : ""
+            }
+        </div>
+
         <div class="event-container">
             ${EVENTS.map((event, index) => `
                 <div class="event-card ${index === 0 ? "today" : ""}">
